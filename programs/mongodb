@@ -1,0 +1,11 @@
+#!/bin/sh
+
+docker stop mongodb &> /dev/null
+docker rm mongodb &> /dev/null
+
+docker run --detach \
+           --publish 27017:27017 \
+           --name mongodb \
+           dockerfile/mongodb
+
+echo "MongoDB started. Listening to 27017."

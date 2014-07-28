@@ -2,9 +2,10 @@
 
 docker stop redis &> /dev/null
 docker rm redis &> /dev/null
+
 docker run --detach \
            --name redis \
            --publish 6379:6379 \
            dockerfile/redis
 
-echo "Redis started. Listening on port 6379"
+echo "Redis started. Listening on port 6379."

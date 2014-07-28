@@ -1,0 +1,12 @@
+#!/bin/sh
+
+docker stop elasticsearch &> /dev/null
+docker rm elasticsearch &> /dev/null
+
+docker run --detach \
+           --publish 9200:9200 \
+           --publish 9300:9300 \
+           --name elasticsearch \
+           dockerfile/elasticsearch
+
+echo "Elasticsearch started. Listening on port 9200."
