@@ -64,16 +64,62 @@ init() {
 
 
 list() {
-  init
+  init --silently
 
-  echo "Programs:"
-  echo
+  echo ":: Available Programs"
   for path in $(ls "$local_repo"/programs | sort -f); do
     filename=$(basename $path)
     echo "${filename%.*}"
   done
 }
 
+
+redock() {
+  if hash boot2docker 2>/dev/null; then
+    export DOCKER_IP=$(boot2docker ip 2>/dev/null)
+    export DOCKER_HOST="tcp://$DOCKER_IP:2375"
+  fi
+}
+
+
+dump() {
+  init --silently
+
+  program_file="$local_repo/programs/$1"
+
+  if [ -e "$program_file" ]; then
+    redock
+    echo "Starting $1 (using $program_file)"
+    sh $program_file
+  else
+    echo "Unknown argument: $1" >&2
+  fi
+}
+
+
+# --- Main entry point ----------------------
+if [ $# -eq 0 ]; then
+  usage
+  exit 0
+fi
+
+# Sanity check command-line options. We want either
+# options like -l or arguments like Python, but not
+# both
+has_opts=0
+has_args=0
+for opt in $@; do
+  if [ $( echo $opt | cut -c1) = "-" ]; then
+    has_opts=1
+  else
+    has_args=1
+  fi
+done
+
+if [ $has_opts -eq 1 -a $has_args -eq 1 ]; then
+  usage
+  exit 1
+fi
 
 # Parse comand-line options
 while [ $# -gt 0 ]; do
