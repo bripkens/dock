@@ -2,7 +2,9 @@
 **dock** is a shell script to help you easily bootstrap databases and other
 tools that you need for development purposes. Instead of installing something
 like MongoDB or Redis natively on your machine, you can run it in a Docker
-container with just a single command `dock mongodb`.
+container with just a single command `dock mongodb`. The main purpose of
+**dock** is to make the interaction with Docker dead simple for quick prototypes
+and hackathons.
 
 ## Typical usage
 
@@ -21,6 +23,7 @@ your machine.
 
 ### Installation on OS X using [Homebrew](http://brew.sh/)
 ```
+brew tap bripkens/dock
 brew install dock
 ```
 

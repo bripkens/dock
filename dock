@@ -9,7 +9,7 @@ local_repo=$HOME/.dock
 
 
 version() {
-  echo "$(basename $0) 0.1.0 by Ben Ripkens <bripkens.dev@gmail.com>"
+  echo "$(basename $0) 0.2.0 by Ben Ripkens <bripkens.dev@gmail.com>"
   echo "https://github.com/bripkens/dock"
 }
 
@@ -18,7 +18,7 @@ usage() {
     version
 cat << EOF >&2
 
-TODO...
+$(basename $0) easily bootstrap development tools with Docker
 
 Usage:
     $(basename $0) [options]
