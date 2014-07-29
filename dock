@@ -5,7 +5,7 @@
 #
 
 remote_repo=https://github.com/bripkens/dock.git
-local_repo=$HOME/.dock
+local_repo=$HOME/.bripkens-dock
 
 
 version() {
@@ -92,7 +92,14 @@ dump() {
     echo "Starting $1 (using $program_file)"
     sh $program_file
   else
-    echo "Unknown argument: $1" >&2
+    echo "Unknown program: $1" >&2
+    echo >&2
+    echo "If you feel like $1 should be supported by dock, please" >&2
+    echo "consider opening an issue or sending a pull request to" >&2
+    echo >&2
+    echo "       https://github.com/bripkens/dock" >&2
+    echo >&2
+    echo "Thanks!" >&2
   fi
 }
 
