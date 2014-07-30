@@ -18,20 +18,21 @@ usage() {
     version
 cat << EOF >&2
 
-$(basename $0) easily bootstrap development tools with Docker
+easily bootstrap development tools with Docker
 
 Usage:
     $(basename $0) [options]
-    $(basename $0) [program]
+    $(basename $0) [formula]
 
 Example:
     $(basename $0) redis
 
 Options:
-    -l, --list          List available boilerplates
-    -u, --upgrade       Upgrade list of available boilerplates
-    -h, --help          Display this help text
-    -v, --version       Display current script version
+    -l, --list            List available formulas
+    -c, --cat [formula]   Display formula details
+    -u, --upgrade         Upgrade list of available formulas
+    -h, --help            Display this help text
+    -v, --version         Display current script version
 EOF
 }
 
@@ -66,8 +67,8 @@ init() {
 list() {
   init --silently
 
-  echo ":: Available Programs"
-  for path in $(ls "$local_repo"/programs | sort -f); do
+  echo ":: Available Formulars"
+  for path in $(ls "$local_repo"/formulas | sort -f); do
     filename=$(basename $path)
     echo "${filename%.*}"
   done
@@ -82,24 +83,42 @@ redock() {
 }
 
 
+unknown_formula() {
+  echo "Unknown formula: $1" >&2
+  echo >&2
+  echo "If you feel like $1 should be supported by dock, please" >&2
+  echo "consider opening an issue or sending a pull request to" >&2
+  echo >&2
+  echo "       https://github.com/bripkens/dock" >&2
+  echo >&2
+  echo "Thanks!" >&2
+}
+
+
 dump() {
   init --silently
 
-  program_file="$local_repo/programs/$1"
+  program_file="$local_repo/formulas/$1"
+
+  if [ -e "$program_file" ]; then
+    cat $program_file
+  else
+    unknown_program $1
+  fi
+}
+
+
+start() {
+  init --silently
+
+  program_file="$local_repo/formulas/$1"
 
   if [ -e "$program_file" ]; then
     redock
     echo "Starting $1 (using $program_file)"
     sh $program_file
   else
-    echo "Unknown program: $1" >&2
-    echo >&2
-    echo "If you feel like $1 should be supported by dock, please" >&2
-    echo "consider opening an issue or sending a pull request to" >&2
-    echo >&2
-    echo "       https://github.com/bripkens/dock" >&2
-    echo >&2
-    echo "Thanks!" >&2
+    unknown_program $1
   fi
 }
 
@@ -108,24 +127,6 @@ dump() {
 if [ $# -eq 0 ]; then
   usage
   exit 0
-fi
-
-# Sanity check command-line options. We want either
-# options like -l or arguments like Python, but not
-# both
-has_opts=0
-has_args=0
-for opt in $@; do
-  if [ $( echo $opt | cut -c1) = "-" ]; then
-    has_opts=1
-  else
-    has_args=1
-  fi
-done
-
-if [ $has_opts -eq 1 -a $has_args -eq 1 ]; then
-  usage
-  exit 1
 fi
 
 # Parse comand-line options
@@ -137,16 +138,23 @@ while [ $# -gt 0 ]; do
       ;;
     -l | --list )
       list
+      exit
       ;;
     -u | --upgrade )
       upgrade
+      exit
       ;;
     -h | --help )
       usage
       exit 1
       ;;
+    -c | --cat )
+      dump $2
+      shift
+      ;;
     * ) # default case
-      dump $1
+      start $1
+      exit
       ;;
   esac
   shift
