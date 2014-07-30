@@ -5,7 +5,7 @@
 #
 
 remote_repo=https://github.com/bripkens/dock.git
-local_repo=$HOME/.bripkens-dock
+local_repo=$HOME/.dock-formulas
 
 
 version() {
