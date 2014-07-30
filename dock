@@ -67,7 +67,7 @@ init() {
 list() {
   init --silently
 
-  echo ":: Available Formulars"
+  echo ":: Available Formulas"
   for path in $(ls "$local_repo"/formulas | sort -f); do
     filename=$(basename $path)
     echo "${filename%.*}"
@@ -98,12 +98,12 @@ unknown_formula() {
 dump() {
   init --silently
 
-  program_file="$local_repo/formulas/$1"
+  formula="$local_repo/formulas/$1"
 
-  if [ -e "$program_file" ]; then
-    cat $program_file
+  if [ -e "$formula" ]; then
+    cat $formula
   else
-    unknown_program $1
+    unknown_formula $1
   fi
 }
 
@@ -111,14 +111,14 @@ dump() {
 start() {
   init --silently
 
-  program_file="$local_repo/formulas/$1"
+  formula="$local_repo/formulas/$1"
 
-  if [ -e "$program_file" ]; then
+  if [ -e "$formula" ]; then
     redock
-    echo "Starting $1 (using $program_file)"
-    sh $program_file
+    echo "Starting $1 (using $formula)"
+    sh $formula
   else
-    unknown_program $1
+    unknown_formula $1
   fi
 }
 
