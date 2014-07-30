@@ -29,6 +29,7 @@ brew install dock
 
 ### Upgrade on OS X using Homebrew
 ```
+brew update
 brew upgrade dock
 ```
 
