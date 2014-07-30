@@ -49,7 +49,7 @@ curl https://raw.githubusercontent.com/bripkens/dock/master/dock -so ~/bin/dock 
 
 ## Supported programs
 For a list of supported programs run `dock -l` or check out this repository's
-[programs/](https://github.com/bripkens/dock/tree/master/programs) directory.
+[formulas/](https://github.com/bripkens/dock/tree/master/formulas) directory.
 Feel free to send a pull request for any awesome Docker containers that are
 still missing!
 
