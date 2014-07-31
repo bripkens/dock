@@ -1,11 +1,10 @@
 #!/bin/bash
 
-docker stop neo4j &> /dev/null
-docker rm neo4j &> /dev/null
+source "${BASH_SOURCE%/*}/../common"
 
-docker run --detach \
-           --publish 7474:7474 \
-           --name neo4j \
-           tpires/neo4j
+force_stop neo4j
 
-echo "Neo4j started. Listening to 7474."
+run --detach \
+    --publish 7474:7474 \
+    --name neo4j \
+    tpires/neo4j

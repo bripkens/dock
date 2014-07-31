@@ -1,20 +1,17 @@
 #!/bin/bash
 
-docker stop sonar-server &> /dev/null
-docker rm sonar-server &> /dev/null
+source "${BASH_SOURCE%/*}/../common"
 
-docker stop sonar-mysql &> /dev/null
-docker rm sonar-mysql &> /dev/null
+force_stop sonar-server
+force_stop sonar-mysql
 
-docker run --detach \
-           --publish 3306:3306 \
-           --name sonar-mysql \
-           tpires/sonar-mysql
+run --detach \
+    --publish 3306:3306 \
+    --name sonar-mysql \
+    tpires/sonar-mysql
 
-docker run --detach \
-           --publish 8474:9000 \
-           --name sonar-server \
-           --link sonar-mysql:db \
-           tpires/sonar-server
-
-echo "Sonar started. Listening to 8474."
+run --detach \
+    --publish 8474:9000 \
+    --name sonar-server \
+    --link sonar-mysql:db \
+    tpires/sonar-server

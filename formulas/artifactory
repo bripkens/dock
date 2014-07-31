@@ -1,11 +1,10 @@
 #!/bin/bash
 
-docker stop artifactory &> /dev/null
-docker rm artifactory &> /dev/null
+source "${BASH_SOURCE%/*}/../common"
 
-docker run --detach \
-           --publish 8473:8080 \
-           --name artifactory \
-           mattgruter/artifactory
+force_stop artifactory
 
-echo "Artifactory started. Listening to 8473."
+run --detach \
+    --publish 8473:8080 \
+    --name artifactory \
+    mattgruter/artifactory

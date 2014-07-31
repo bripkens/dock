@@ -19,7 +19,12 @@ get_ip() {
   if hash boot2docker 2>/dev/null; then
     boot2docker ip 2>/dev/null
   else
-    docker inspect --format={{.NetworkSettings.IPAddress}} $1
+    # The following gives the ip address of the container. We
+    # don't need this information though. On Linux systems the
+    # systems can be accessed via 127.0.0.1
+    # docker inspect --format={{.NetworkSettings.IPAddress}} $1
+
+    echo "127.0.0.1"
   fi
 }
 
@@ -45,6 +50,6 @@ run() {
                  sort -nu)
 
   echo "Container $container_name started"
-  echo "IP:      $container_ip"
-  echo "Ports:   $(echo $host_ports | tr '\\n' ',')"
+  echo "IP:         $container_ip"
+  echo "Ports:      $(echo $host_ports | tr '\\n' ',')"
 }

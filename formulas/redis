@@ -1,11 +1,10 @@
 #!/bin/bash
 
-docker stop redis &> /dev/null
-docker rm redis &> /dev/null
+source "${BASH_SOURCE%/*}/../common"
 
-docker run --detach \
-           --name redis \
-           --publish 6379:6379 \
-           dockerfile/redis
+force_stop redis
 
-echo "Redis started. Listening on port 6379."
+run --detach \
+    --name redis \
+    --publish 6379:6379 \
+    dockerfile/redis
