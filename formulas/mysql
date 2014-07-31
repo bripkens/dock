@@ -1,0 +1,14 @@
+#!/bin/sh
+
+docker stop mysql &> /dev/null
+docker rm mysql &> /dev/null
+
+root_pw="root"
+
+docker run --detach \
+           --env MYSQL_ROOT_PASSWORD=$root_pw \
+           --publish 3306:3306 \
+           --name mysql \
+           mysql
+
+echo "MySQL started. Listening to 3306. Root password is '$root_pw'"
