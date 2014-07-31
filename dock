@@ -131,7 +131,7 @@ start() {
     redock
     echo
     echo "Starting $1 (using $formula)"
-    sh $formula
+    bash $formula
   else
     unknown_formula $1
   fi
