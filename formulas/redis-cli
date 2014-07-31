@@ -1,8 +1,8 @@
 #!/bin/sh
 
 docker run --interactive \
-               --tty \
-               --rm \
-               --link redis:redis \
-               dockerfile/redis \
-               bash -c 'redis-cli -h $REDIS_PORT_6379_TCP_ADDR'
+           --tty \
+           --rm \
+           --link redis:redis \
+           dockerfile/redis \
+           bash -c 'redis-cli -h $REDIS_PORT_6379_TCP_ADDR'
