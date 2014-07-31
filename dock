@@ -31,6 +31,7 @@ Options:
     -l, --list            List available formulas
     -c, --cat [formula]   Display formula details
     -u, --upgrade         Upgrade list of available formulas
+    -d, --rm              Stop and remove all containers
     -h, --help            Display this help text
     -v, --version         Display current script version
 EOF
@@ -123,6 +124,15 @@ start() {
 }
 
 
+stop_and_remove() {
+  container=$(docker ps -a -q)
+  if [ -n "$container" ]; then
+    docker stop $container
+    docker rm $container
+  fi
+}
+
+
 # --- Main entry point ----------------------
 if [ $# -eq 0 ]; then
   usage
@@ -150,6 +160,10 @@ while [ $# -gt 0 ]; do
       ;;
     -c | --cat )
       dump $2
+      shift
+      ;;
+    -d | --rm )
+      stop_and_remove
       shift
       ;;
     * ) # default case
