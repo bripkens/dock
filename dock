@@ -29,7 +29,7 @@ Example:
 
 Options:
     -l, --list               List available formulas
-    -c, --cat [formula]   Display formula details
+    -c, --cat [formula]      Display formula details
     -u, --upgrade            Upgrade list of available formulas
     -d, --rm                 Stop and remove all containers
     -h, --help               Display this help text
