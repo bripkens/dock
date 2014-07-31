@@ -175,11 +175,11 @@ while [ $# -gt 0 ]; do
       ;;
     -c | --cat )
       dump $2
-      shift
+      exit
       ;;
     -d | --rm )
       stop_and_remove
-      shift
+      exit
       ;;
     * ) # default case
       start $1
