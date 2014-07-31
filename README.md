@@ -19,7 +19,7 @@ For additional usage instructions, run `dock` without arguments.
 
 ## Installation
 First make sure that you have [Docker](https://docs.docker.com/) running on
-your machine.
+your machine. Then continue with the installation of dock:
 
 ### Installation on OS X using [Homebrew](http://brew.sh/)
 ```
