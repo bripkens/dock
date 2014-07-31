@@ -29,6 +29,7 @@ brew install dock
 
 ### Upgrade on OS X using Homebrew
 ```
+brew update
 brew upgrade dock
 ```
 
@@ -41,8 +42,10 @@ dock -u                  # Initialise dock
 
 You can automate this with the following one-liner (assuming ~/bin is on your $PATH).
 ```
-curl https://raw.github.com/bripkens/dock/master/dock \
-    -so ~/bin/dock && chmod +x ~/bin/dock && dock -u
+curl https://raw.githubusercontent.com/bripkens/dock/master/dock -so ~/bin/dock && \
+     chmod +x ~/bin/dock && \
+     dock -u && \
+     echo "dock installation successful. Try running 'dock'"
 ```
 
 ## Supported programs
