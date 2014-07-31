@@ -129,6 +129,7 @@ start() {
 
   if [ -e "$formula" ]; then
     redock
+    echo
     echo "Starting $1 (using $formula)"
     sh $formula
   else
