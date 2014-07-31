@@ -1,0 +1,20 @@
+#!/bin/sh
+
+docker stop sonar-server &> /dev/null
+docker rm sonar-server &> /dev/null
+
+docker stop sonar-mysql &> /dev/null
+docker rm sonar-mysql &> /dev/null
+
+docker run --detach \
+           --publish 3306:3306 \
+           --name sonar-mysql \
+           tpires/sonar-mysql
+
+docker run --detach \
+           --publish 8474:9000 \
+           --name sonar-server \
+           --link sonar-mysql:db \
+           tpires/sonar-server
+
+echo "Sonar started. Listening to 8474."
