@@ -1,0 +1,7 @@
+#!/bin/sh
+
+docker run --interactive \
+           --tty \
+           --rm \
+           ubuntu \
+           bash
