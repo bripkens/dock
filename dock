@@ -22,18 +22,18 @@ easily bootstrap development tools with Docker
 
 Usage:
     $(basename $0) [options]
-    $(basename $0) [formula]
+    $(basename $0) [formula...]
 
 Example:
     $(basename $0) redis
 
 Options:
-    -l, --list            List available formulas
+    -l, --list               List available formulas
     -c, --cat [formula]   Display formula details
-    -u, --upgrade         Upgrade list of available formulas
-    -d, --rm              Stop and remove all containers
-    -h, --help            Display this help text
-    -v, --version         Display current script version
+    -u, --upgrade            Upgrade list of available formulas
+    -d, --rm                 Stop and remove all containers
+    -h, --help               Display this help text
+    -v, --version            Display current script version
 EOF
 }
 
@@ -168,7 +168,6 @@ while [ $# -gt 0 ]; do
       ;;
     * ) # default case
       start $1
-      exit
       ;;
   esac
   shift
