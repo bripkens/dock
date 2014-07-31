@@ -1,0 +1,11 @@
+#!/bin/sh
+
+docker stop jenkins &> /dev/null
+docker rm jenkins &> /dev/null
+
+docker run --detach \
+           --publish 8080:8080 \
+           --name jenkins \
+           jenkins
+
+echo "Jenkins started. Listening to 8080."
