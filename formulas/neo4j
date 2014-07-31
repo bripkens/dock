@@ -1,0 +1,11 @@
+#!/bin/sh
+
+docker stop neo4j &> /dev/null
+docker rm neo4j &> /dev/null
+
+docker run --detach \
+           --publish 7474:7474 \
+           --name neo4j \
+           tpires/neo4j
+
+echo "Neo4j started. Listening to 7474."
