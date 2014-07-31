@@ -1,11 +1,10 @@
 #!/bin/sh
 
-docker stop mongodb &> /dev/null
-docker rm mongodb &> /dev/null
+source "${BASH_SOURCE%/*}/../common"
 
-docker run --detach \
-           --publish 27017:27017 \
-           --name mongodb \
-           dockerfile/mongodb
+force_stop mongodb
 
-echo "MongoDB started. Listening to 27017."
+run --detach \
+    --publish 27017:27017 \
+    --name mongodb \
+    dockerfile/mongodb
