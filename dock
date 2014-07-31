@@ -109,8 +109,21 @@ dump() {
 }
 
 
+check_docker_usage_possible() {
+  docker ps > /dev/null
+  local status=$?
+  if [ $status -ne 0 ]; then
+    echo >&2
+    echo "It seems like there are issues with your" >&2
+    echo "Docker setup. Please see the error above." >&2
+    exit 1
+  fi
+}
+
+
 start() {
   init --silently
+  check_docker_usage_possible
 
   formula="$local_repo/formulas/$1"
 
@@ -125,6 +138,8 @@ start() {
 
 
 stop_and_remove() {
+  check_docker_usage_possible
+
   container=$(docker ps -a -q)
   if [ -n "$container" ]; then
     docker stop $container
