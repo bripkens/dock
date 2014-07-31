@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 docker stop mysql &> /dev/null
 docker rm mysql &> /dev/null

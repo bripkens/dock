@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 docker stop artifactory &> /dev/null
 docker rm artifactory &> /dev/null

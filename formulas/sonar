@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 docker stop sonar-server &> /dev/null
 docker rm sonar-server &> /dev/null

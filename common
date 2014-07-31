@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 force_stop() {
   docker stop $1 &> /dev/null

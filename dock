@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Script for easily running development systems in docker containers
 # https://github.com/bripkens/dock
