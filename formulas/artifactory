@@ -1,0 +1,11 @@
+#!/bin/sh
+
+docker stop artifactory &> /dev/null
+docker rm artifactory &> /dev/null
+
+docker run --detach \
+           --publish 8473:8080 \
+           --name artifactory \
+           mattgruter/artifactory
+
+echo "Artifactory started. Listening to 8473."
