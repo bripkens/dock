@@ -1,12 +1,11 @@
 #!/bin/sh
 
-docker stop elasticsearch &> /dev/null
-docker rm elasticsearch &> /dev/null
+source "${BASH_SOURCE%/*}/../common"
 
-docker run --detach \
-           --publish 9200:9200 \
-           --publish 9300:9300 \
-           --name elasticsearch \
-           dockerfile/elasticsearch
+force_stop elasticsearch
 
-echo "Elasticsearch started. Listening on port 9200."
+run --detach \
+    --publish 9200:9200 \
+    --publish 9300:9300 \
+    --name elasticsearch \
+    dockerfile/elasticsearch

@@ -1,11 +1,10 @@
 #!/bin/sh
 
-docker stop jenkins &> /dev/null
-docker rm jenkins &> /dev/null
+source "${BASH_SOURCE%/*}/../common"
 
-docker run --detach \
-           --publish 8472:8080 \
-           --name jenkins \
-           jenkins
+force_stop jenkins
 
-echo "Jenkins started. Listening to 8472."
+run --detach \
+    --publish 8472:8080 \
+    --name jenkins \
+    jenkins
