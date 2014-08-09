@@ -123,12 +123,12 @@ check_docker_usage_possible() {
 
 start() {
   init --silently
+  redock
   check_docker_usage_possible
 
   formula="$local_repo/formulas/$1"
 
   if [ -e "$formula" ]; then
-    redock
     echo
     echo "Starting $1 (using $formula)"
     bash $formula
