@@ -9,10 +9,25 @@ and hackathons.
 ## Typical usage
 
 ```
-$ dock redis
-Starting redis (using /Users/ben/.dock/programs/redis)
-b35bd1175e720b563f333fdcd27a33a35e0e05ce9bc79bbb3b69dd67ceb71867
-Redis started. Listening on port 6379.
+$ dock redis jenkins mongodb
+
+Starting redis (using /Users/ben/.dock-formulas/formulas/redis)
+Container started
+Name:       redis
+IP:         192.168.59.103
+Ports:      6379
+
+Starting jenkins (using /Users/ben/.dock-formulas/formulas/jenkins)
+Container started
+Name:       jenkins
+IP:         192.168.59.103
+Ports:      8472
+
+Starting mongodb (using /Users/ben/.dock-formulas/formulas/mongodb)
+Container started
+Name:       mongodb
+IP:         192.168.59.103
+Ports:      27017
 ```
 
 For additional usage instructions, run `dock` without arguments.
