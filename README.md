@@ -44,6 +44,8 @@ For additional usage instructions, run `dock` without arguments.
 First make sure that you have [Docker](https://docs.docker.com/) running on
 your machine. Then continue with the installation of dock:
 
+*As of the time of writing the Homebrew Docker installer is broken. [boot2docker](https://github.com/boot2docker/osx-installer/releases) is currently the easiest way to get a working Docker environment on OS X.*
+
 ### Installation on OS X using [Homebrew](http://brew.sh/)
 ```
 brew tap bripkens/dock
