@@ -50,7 +50,7 @@ run() {
                  sort -nu)
 
   echo "Container started"
-  echo "Name:       $container_name"
-  echo "IP:         $container_ip"
-  echo "Ports:      $(echo $host_ports | tr '\\n' ',')"
+  echo "Name:           $container_name"
+  echo "IP:             $container_ip"
+  echo "Ports:          $(echo $host_ports | tr '\\n' ',')"
 }

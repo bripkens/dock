@@ -1,0 +1,20 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+force_stop rabbitmq
+
+run --detach \
+    --name rabbitmq \
+    --publish 5672:5672 \
+    --publish 15672:15672 \
+    tutum/rabbitmq
+
+# We need to show the initial log output in order to present the admin
+# password to the user.
+password=`docker logs rabbitmq | \
+       grep rabbitmqadmin | \
+       sed -E 's/^.*-p ([a-zA-Z0-9]+) .*$/\1/'`
+
+echo "Admin user:     admin"
+echo "Admin pw:       $password"

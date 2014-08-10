@@ -12,4 +12,4 @@ run --detach \
     --name mysql \
     mysql
 
-echo "Password:   $root_pw"
+echo "Password:       $root_pw"
