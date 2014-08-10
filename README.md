@@ -9,25 +9,33 @@ and hackathons.
 ## Typical usage
 
 ```
-$ dock redis jenkins mongodb
+$ dock redis jenkins mongodb rabbitmq
 
 Starting redis (using /Users/ben/.dock-formulas/formulas/redis)
 Container started
-Name:       redis
-IP:         192.168.59.103
-Ports:      6379
+Name:           redis
+IP:             192.168.59.103
+Ports:          6379
 
 Starting jenkins (using /Users/ben/.dock-formulas/formulas/jenkins)
 Container started
-Name:       jenkins
-IP:         192.168.59.103
-Ports:      8472
+Name:           jenkins
+IP:             192.168.59.103
+Ports:          8472
 
 Starting mongodb (using /Users/ben/.dock-formulas/formulas/mongodb)
 Container started
-Name:       mongodb
-IP:         192.168.59.103
-Ports:      27017
+Name:           mongodb
+IP:             192.168.59.103
+Ports:          27017
+
+Starting rabbitmq (using /Users/ben/.dock-formulas/formulas/rabbitmq)
+Container started
+Name:           rabbitmq
+IP:             192.168.59.103
+Ports:          5672 15672
+Admin user:     admin
+Admin pw:       A3y6crBkMk8k
 ```
 
 For additional usage instructions, run `dock` without arguments.
