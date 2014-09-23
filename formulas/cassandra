@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+force_stop cassandra
+
+run --detach \
+    --publish 7000:7000 \
+    --publish 7001:7001 \
+    --publish 7199:7199 \
+    --publish 9042:9042 \
+    --publish 9160:9160 \
+    --name cassandra \
+    spotify/cassandra
+
+echo "Pro Tip:        You can use Cassandra's CQLSH via 'dock cassandra-cqlsh'."
