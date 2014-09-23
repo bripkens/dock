@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+force_stop activemq
+
+run --detach \
+    --publish 8161:8161 \
+    --publish 61612:61612 \
+    --publish 61613:61613 \
+    --publish 61616:61616 \
+    --name activemq \
+    aterreno/activemq-dockerfile
+
+echo "Admin user:     admin"
+echo "Admin pw:       admin"
