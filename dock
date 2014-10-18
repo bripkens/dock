@@ -79,7 +79,7 @@ list() {
 redock() {
   if hash boot2docker 2>/dev/null; then
     export DOCKER_IP=$(boot2docker ip 2>/dev/null)
-    export DOCKER_HOST="tcp://$DOCKER_IP:2375"
+    export DOCKER_HOST="tcp://$DOCKER_IP:2376"
   fi
 }
 
