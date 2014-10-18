@@ -46,6 +46,8 @@ your machine. Then continue with the installation of dock:
 
 *As of the time of writing the Homebrew Docker installer is broken. [boot2docker](https://github.com/boot2docker/osx-installer/releases) is currently the easiest way to get a working Docker environment on OS X.*
 
+*dock versions >= 1.0.0 are compatible with boot2docker 1.3 and beyond. Please use v0.6.3 when you are using an old boot2docker version or upgrade your boot2docker installation.*
+
 ### Installation on OS X using [Homebrew](http://brew.sh/)
 ```
 brew tap bripkens/dock
