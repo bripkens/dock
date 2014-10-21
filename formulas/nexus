@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# more about configuring nexus
+# http://books.sonatype.com/nexus-book/2.10/reference/npm-configuring.html
+# 
+# original cudos to Marcello de Sales:
+# https://registry.hub.docker.com/u/marcellodesales/nexus-npm-registry/
+
+source "${BASH_SOURCE%/*}/../common"
+
+force_stop nexus
+
+run --detach \
+    --publish 80:8081 \
+    --name nexus \
+    -d \
+    -v /app/npm-volume/:/opt/sonatype-work \
+    marcellodesales/nexus-npm-registry
