@@ -11,8 +11,10 @@ source "${BASH_SOURCE%/*}/../common"
 force_stop nexus
 
 run --detach \
-    --publish 80:8081 \
+    --publish 8081:8081 \
     --name nexus \
-    -d \
-    -v /app/npm-volume/:/opt/sonatype-work \
     marcellodesales/nexus-npm-registry
+
+echo "Admin user:     admin"
+echo "Admin pw:       admin123"
+
