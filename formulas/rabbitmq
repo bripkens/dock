@@ -12,9 +12,9 @@ run --detach \
 
 # We need to show the initial log output in order to present the admin
 # password to the user.
-password=`docker logs rabbitmq | \
-       grep rabbitmqadmin | \
-       sed -E 's/^.*-p ([a-zA-Z0-9]+) .*$/\1/'`
+password="$(docker logs rabbitmq | \
+       grep curl | \
+       sed -E 's/^.*admin:([a-zA-Z0-9]+) .*$/\1/')"
 
 echo "Admin user:     admin"
 echo "Admin pw:       $password"
