@@ -2,19 +2,19 @@
 
 source "${BASH_SOURCE%/*}/../common"
 
-force_stop sonar-server
-force_stop sonar-mysql
+force_stop dock-sonar-server
+force_stop dock-sonar-mysql
 
 run --detach \
     --publish 3306:3306 \
-    --name sonar-mysql \
+    --name dock-sonar-mysql \
     tpires/sonar-mysql
 
 echo
 run --detach \
     --publish 8474:9000 \
-    --name sonar-server \
-    --link sonar-mysql:db \
+    --name dock-sonar-server \
+    --link dock-sonar-mysql:db \
     tpires/sonar-server
 
 echo "Admin user:     admin"

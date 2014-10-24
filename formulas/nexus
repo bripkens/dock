@@ -2,19 +2,18 @@
 
 # more about configuring nexus
 # http://books.sonatype.com/nexus-book/2.10/reference/npm-configuring.html
-# 
+#
 # original cudos to Marcello de Sales:
 # https://registry.hub.docker.com/u/marcellodesales/nexus-npm-registry/
 
 source "${BASH_SOURCE%/*}/../common"
 
-force_stop nexus
+force_stop dock-nexus
 
 run --detach \
     --publish 8081:8081 \
-    --name nexus \
+    --name dock-nexus \
     marcellodesales/nexus-npm-registry
 
 echo "Admin user:     admin"
 echo "Admin pw:       admin123"
-

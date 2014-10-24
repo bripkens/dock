@@ -2,9 +2,9 @@
 
 source "${BASH_SOURCE%/*}/../common"
 
-force_stop jenkins
+force_stop dock-jenkins
 
 run --detach \
     --publish 8472:8080 \
-    --name jenkins \
+    --name dock-jenkins \
     jenkins

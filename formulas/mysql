@@ -2,14 +2,14 @@
 
 source "${BASH_SOURCE%/*}/../common"
 
-force_stop mysql
+force_stop dock-mysql
 
 root_pw="root"
 
 run --detach \
     --env MYSQL_ROOT_PASSWORD=$root_pw \
     --publish 3306:3306 \
-    --name mysql \
+    --name dock-mysql \
     mysql
 
 echo "Password:       $root_pw"

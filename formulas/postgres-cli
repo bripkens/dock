@@ -3,6 +3,6 @@
 docker run --interactive \
            --tty \
            --rm \
-           --link postgres:postgres \
+           --link dock-postgres:postgres \
            postgres \
            bash -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres'

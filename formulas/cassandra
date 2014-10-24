@@ -2,7 +2,7 @@
 
 source "${BASH_SOURCE%/*}/../common"
 
-force_stop cassandra
+force_stop dock-cassandra
 
 run --detach \
     --publish 7000:7000 \
@@ -10,7 +10,7 @@ run --detach \
     --publish 7199:7199 \
     --publish 9042:9042 \
     --publish 9160:9160 \
-    --name cassandra \
+    --name dock-cassandra \
     spotify/cassandra
 
 echo "Pro Tip:        You can use Cassandra's CQLSH via 'dock cassandra-cqlsh'."

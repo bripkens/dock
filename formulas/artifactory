@@ -2,9 +2,9 @@
 
 source "${BASH_SOURCE%/*}/../common"
 
-force_stop artifactory
+force_stop dock-artifactory
 
 run --detach \
     --publish 8473:8080 \
-    --name artifactory \
+    --name dock-artifactory \
     mattgruter/artifactory

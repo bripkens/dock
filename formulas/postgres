@@ -2,10 +2,10 @@
 
 source "${BASH_SOURCE%/*}/../common"
 
-force_stop postgres
+force_stop dock-postgres
 
 run --detach \
-    --name postgres \
+    --name dock-postgres \
     --publish 5432:5432 \
     postgres
 

@@ -3,6 +3,6 @@
 docker run --interactive \
            --tty \
            --rm \
-           --link cassandra:cassandra \
+           --link dock-cassandra:cassandra \
            relateiq/cassandra \
            bash -c 'exec /opt/cassandra/bin/cqlsh "$CASSANDRA_PORT_9160_TCP_ADDR" "$CASSANDRA_PORT_9160_TCP_PORT"'

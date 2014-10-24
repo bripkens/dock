@@ -2,9 +2,9 @@
 
 source "${BASH_SOURCE%/*}/../common"
 
-force_stop mongodb
+force_stop dock-mongodb
 
 run --detach \
     --publish 27017:27017 \
-    --name mongodb \
+    --name dock-mongodb \
     dockerfile/mongodb

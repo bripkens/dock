@@ -2,10 +2,10 @@
 
 source "${BASH_SOURCE%/*}/../common"
 
-force_stop elasticsearch
+force_stop dock-elasticsearch
 
 run --detach \
     --publish 9200:9200 \
     --publish 9300:9300 \
-    --name elasticsearch \
+    --name dock-elasticsearch \
     dockerfile/elasticsearch

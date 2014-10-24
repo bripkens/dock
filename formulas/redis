@@ -2,9 +2,9 @@
 
 source "${BASH_SOURCE%/*}/../common"
 
-force_stop redis
+force_stop dock-redis
 
 run --detach \
-    --name redis \
+    --name dock-redis \
     --publish 6379:6379 \
     dockerfile/redis

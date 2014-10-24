@@ -155,7 +155,7 @@ startFormula() {
 stop_and_remove() {
   check_docker_usage_possible
 
-  container=$(docker ps -a -q)
+  container=$(docker ps -a | grep dock- | awk '{print $1}')
   if [ -n "$container" ]; then
     docker stop $container
     docker rm $container
