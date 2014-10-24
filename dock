@@ -148,7 +148,7 @@ start() {
 
 startFormula() {
   echo
-  echo "Starting $1 (using $2)"
+  echo "Starting $1 (using $2)..."
   bash $2
 }
 
