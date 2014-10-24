@@ -81,9 +81,11 @@ For a list of supported programs run `dock -l` or check out this repository's
 Feel free to send a pull request for any awesome Docker containers that are
 still missing!
 
-Dock will look for custom formulas in a .dock-formulas directory relative to
-where it was started. So if you need a formula for a custom docker image that
-you don't want to make public through docker hub, you can put your formulas there.
+## Private formulas
+Dock will look for custom formulas in a `.dock-formulas` directory relative to
+your current working directory. So if you need a formula for a custom docker
+image that you don't want to make public through docker hub, you can put your
+formulas there.
 
 ## Credits
 dock was written by Ben Ripkens ([@BenRipkens](https://twitter.com/BenRipkens)).
