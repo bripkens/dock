@@ -10,7 +10,7 @@ working_dir=`pwd`
 
 
 version() {
-  echo "$(basename $0) 1.2.0 by Ben Ripkens <bripkens.dev@gmail.com>"
+  echo "$(basename $0) 1.2.1 by Ben Ripkens <bripkens.dev@gmail.com>"
   echo "https://github.com/bripkens/dock"
 }
 

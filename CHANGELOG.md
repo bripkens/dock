@@ -1,5 +1,9 @@
 # dock changelog
 
+## 1.2.1
+ - `dock --redock` was removed as the parent shell's environment cannot
+   be manipulated.
+
 ## 1.2.0
  - Thanks to [@britter](https://github.com/britter) you now set Docker
    environment variables via `dock --redock`.
