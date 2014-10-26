@@ -1,5 +1,9 @@
 # dock changelog
 
+## 1.2.0
+ - Thanks to [@britter](https://github.com/britter) you now set Docker
+   environment variables via `dock --redock`.
+
 ## 1.1.0
 
  - Thanks to [@britter](https://github.com/britter) it is now possible to have
