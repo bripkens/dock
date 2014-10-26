@@ -30,7 +30,6 @@ Example:
 
 Options:
     -l, --list               List available formulas
-    -r, --redock             Set docker environment variables
     -c, --cat [formula]      Display formula details
     -u, --upgrade            Upgrade list of available formulas
     -d, --rm                 Stop and remove all containers
@@ -195,10 +194,6 @@ while [ $# -gt 0 ]; do
       ;;
     -d | --rm )
       stop_and_remove
-      exit
-      ;;
-    -r | --redock)
-      redock
       exit
       ;;
     * ) # default case
