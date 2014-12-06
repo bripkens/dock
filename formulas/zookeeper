@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+force_stop dock-zookeeper
+
+run --detach \
+    --publish 2181:2181 \
+    --publish 2888:2888 \
+    --publish 3888:3888 \
+    --name dock-zookeeper \
+    jplock/zookeeper:3.4.6
