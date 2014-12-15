@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# This setup is based on the following GitHub repository and fig file
+# https://github.com/wurstmeister/kafka-docker
+
+source "${BASH_SOURCE%/*}/../common"
+
+if [ -z "$(docker ps | grep dock-zookeeper)" ]; then
+  echo "Zookeeper hasn't beed started, but is required by Kafka."
+  dock zookeeper
+fi
+
+echo
+echo "Starting three Kafka instances..."
+
+for i in {1..3}; do
+  echo
+
+  force_stop "dock-kafka-$i"
+
+  run --detach \
+      --publish "909$(($i + 1)):9092" \
+      --env "KAFKA_ADVERTISED_HOST_NAME=192.168.59.103" \
+      --volume "/var/run/docker.sock:/var/run/docker.sock" \
+      --link dock-zookeeper:zk \
+      --name "dock-kafka-$i" \
+      wurstmeister/kafka:0.8.1.1-1
+done
