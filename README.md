@@ -87,6 +87,17 @@ your current working directory. So if you need a formula for a custom docker
 image that you don't want to make public through docker hub, you can put your
 formulas there.
 
+## Contributing formulas
+I will gladly accept your formulas. The following points describe the basic
+process of adding a new formula.
+
+ - [Fork this repository](https://github.com/bripkens/dock/fork)
+ - `git clone <your fork>`
+ - Add a new file to the `formulas/` directory
+ - Check out existing formulas for the basic formula structure
+ - Try the new formula locally `bash forumlas/<my new formula>`
+ - Commit, push and open a pull request
+
 ## Credits
 dock was written by Ben Ripkens ([@BenRipkens](https://twitter.com/BenRipkens)).
 
