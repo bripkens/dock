@@ -5,12 +5,6 @@ source "${BASH_SOURCE%/*}/../common"
 force_stop dock-couchdb
 
 run --detach \
-    --publish 6984:6984 \
+    --publish 5984:5984 \
     --name dock-couchdb \
-    klaemo/couchdb-ssl:latest
-
-echo 'Note:           CouchDB is only accepting https connections on port 6984.'
-echo '                Make sure to accept self-signed and unverified, i.e.'
-echo '                insecure, connections.'
-echo '                Example: curl -k https://$DOCKER_IP:6984'
-
+    klaemo/couchdb:latest
