@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+force_stop dock-couchdb
+
+run --detach \
+    --publish 6984:6984 \
+    --name dock-couchdb \
+    klaemo/couchdb-ssl:latest
