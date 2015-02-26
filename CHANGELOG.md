@@ -1,5 +1,8 @@
 # dock changelog
 
+## 1.2.2
+ - Redock doesn't work with custom boot2docker configurations.
+
 ## 1.2.1
  - `dock --redock` was removed as the parent shell's environment cannot
    be manipulated.

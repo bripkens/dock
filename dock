@@ -84,13 +84,6 @@ listFormulas() {
   done
 }
 
-redock() {
-  if hash boot2docker 2>/dev/null; then
-    export DOCKER_IP=$(boot2docker ip 2>/dev/null)
-    export DOCKER_HOST="tcp://$DOCKER_IP:2376"
-  fi
-}
-
 
 unknown_formula() {
   echo "Unknown formula: $1" >&2
@@ -131,7 +124,6 @@ check_docker_usage_possible() {
 
 start() {
   init --silently
-  redock
   check_docker_usage_possible
 
   project_formula="$working_dir/.dock-formulas/$1"
