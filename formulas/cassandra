@@ -11,6 +11,6 @@ run --detach \
     --publish 9042:9042 \
     --publish 9160:9160 \
     --name dock-cassandra \
-    spotify/cassandra
+    abh1nav/cassandra
 
 echo "Pro Tip:        You can use Cassandra's CQLSH via 'dock cassandra-cqlsh'."
