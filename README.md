@@ -1,6 +1,8 @@
 # dock
 
 [![Join the chat at https://gitter.im/bripkens/dock](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bripkens/dock?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+
 **dock** is a shell script to help you easily bootstrap databases and other
 tools that you need for development purposes. Instead of installing something
 like MongoDB or Redis natively on your machine, you can run it in a Docker
