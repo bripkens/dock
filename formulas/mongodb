@@ -8,7 +8,4 @@ run --detach \
     --publish 27017:27017 \
     --publish 27018:27018 \
     --name dock-mongodb \
-    tutum/mongodb
-
-echo "Admin user:     admin"
-echo "Admin password: Inspect the password via 'docker logs dock-mongodb'"
+    mongo
