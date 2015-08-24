@@ -5,6 +5,6 @@ source "${BASH_SOURCE%/*}/../common"
 force_stop dock-artifactory
 
 run --detach \
-    --publish 8473:8080 \
+    --publish 8473:8081 \
     --name dock-artifactory \
-    mattgruter/artifactory
+    jfrog-docker-registry.bintray.io/jfrog/artifactory-oss
