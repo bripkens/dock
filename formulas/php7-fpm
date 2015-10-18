@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+force_stop php7-fpm
+
+run --detach \
+    --publish 9000 \
+    --name php7-fpm \
+    --volume $(pwd):/var/www/html \
+    php:7-fpm
+
+echo "Mounted $(pwd) into /var/www/html"
