@@ -1,0 +1,43 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+force_stop dock-cachet-mysql
+force_stop dock-cachet
+
+root_pw="root"
+db="dockDatabase"
+user="dockUser"
+user_pw="dockPassword"
+
+run --detach \
+    --env MYSQL_ROOT_PASSWORD=$root_pw \
+    --env MYSQL_USER=$user \
+    --env MYSQL_PASSWORD=$user_pw \
+    --env MYSQL_DATABASE=$db \
+    --name dock-cachet-mysql \
+    mysql
+
+echo "Root password:  $root_pw"
+echo
+echo "Database:       $db"
+echo "User:           $user"
+echo "User password:  $user_pw"
+
+run --detach \
+    --link dock-cachet-mysql:mysql \
+    --env DB_HOST=mysql \
+    --env DB_DATABASE=$db \
+    --env DB_USERNAME=$user \
+    --env DB_PASSWORD=$user_pw \
+    --publish 8585:8000 \
+    --name dock-cachet \
+    cachethq/docker:latest
+
+sleep 5
+docker exec dock-cachet php artisan migrate --force
+docker exec dock-cachet php artisan key:generate
+docker exec dock-cachet php artisan config:cache
+
+echo "Cache started. You can now access it via:"
+echo "   http://192.168.59.103:8585/setup"
