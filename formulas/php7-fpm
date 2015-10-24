@@ -2,7 +2,7 @@
 
 source "${BASH_SOURCE%/*}/../common"
 
-force_stop php7-fpm
+force_stop dock-php7-fpm
 
 run --detach \
     --publish 9000 \
