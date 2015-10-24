@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+force_stop dock-wordpress
+
+run --detach \
+    --publish 80 \
+    --name dock-wordpress \
+    --link dock-mysql:mysql \
+    wordpress:latest
+
+echo "General Database access: same as dock-wordpress"
+echo "Wordpress Database name: wordpress"
+echo "Wordpress Database user: root"
