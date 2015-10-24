@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+force_stop dock-php7-apache
+
+run --detach \
+    --publish 80 \
+    --name dock-php7-apache \
+    --volume $(pwd):/var/www/html \
+    php:7-apache
+
+echo "Mounted $(pwd) into /var/www/html"
