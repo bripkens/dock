@@ -10,3 +10,6 @@ run --detach \
     --link dock-mysql:mysql \
     wordpress:latest
 
+echo "General Database access: same as dock-wordpress"
+echo "Wordpress Database name: wordpress"
+echo "Wordpress Database user: root"
