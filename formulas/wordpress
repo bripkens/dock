@@ -2,6 +2,11 @@
 
 source "${BASH_SOURCE%/*}/../common"
 
+if [ -z "$(docker ps | grep dock-mysql)" ]; then
+  echo "MySQL hasn't beed started, but is required by Wordpress."
+  dock mysql
+fi
+
 force_stop dock-wordpress
 
 run --detach \
