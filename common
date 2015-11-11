@@ -7,7 +7,9 @@ force_stop() {
 
 
 inspect() {
-  if hash boot2docker 2>/dev/null; then
+  if hash docker-machine 2>/dev/null; then
+    docker-machine ssh $DOCKER_MACHINE_NAME docker inspect --format=$2 $1
+  elif hash boot2docker 2>/dev/null; then
     boot2docker ssh docker inspect --format=$2 $1
   else
     docker inspect --format=$2 $1
@@ -16,7 +18,9 @@ inspect() {
 
 
 get_ip() {
-  if hash boot2docker 2>/dev/null; then
+  if hash docker-machine 2>/dev/null; then
+    docker-machine ip $DOCKER_MACHINE_NAME 2>/dev/null
+  elif hash boot2docker 2>/dev/null; then
     boot2docker ip 2>/dev/null
   else
     # The following gives the ip address of the container. We
