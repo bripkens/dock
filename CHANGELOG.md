@@ -1,5 +1,8 @@
 # dock changelog
 
+## 1.3.0
+ - dock is now compatible with docker-machine thanks to [@codingfabian](https://github.com/CodingFabian).
+
 ## 1.2.2
  - Redock doesn't work with custom boot2docker configurations.
 
