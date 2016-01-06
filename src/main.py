@@ -1,14 +1,17 @@
-from os import chdir, listdir
+import sys
+
+from os import chdir, listdir, devnull
 from os.path import expanduser, exists, join
 from argparse import ArgumentParser
 from subprocess import call
-import importlib
+from importlib import import_module
 
 
 VERSION = '1.4.0'
 REMOTE_REPO='https://github.com/bripkens/dock.git'
 LOCAL_REPO = expanduser('~/.dock-formulas')
 FORMULA_DIR = join(LOCAL_REPO, 'src', 'formula')
+
 
 def print_version():
   print 'dock {} by Ben Ripkens and contributors'.format(VERSION)
@@ -27,23 +30,9 @@ def ensure_local_repo_exists():
 
 def upgrade():
   if (exists(LOCAL_REPO)):
-    chdir(LOCAL_REPO)
-    call(['git', 'pull', REMOTE_REPO, 'master'])
+    call(['git', 'pull', REMOTE_REPO, 'master'], cwd=LOCAL_REPO)
   else:
     clone()
-
-
-def execute_formulas(formulas):
-  ensure_local_repo_exists()
-  for formula in formulas:
-    print ''
-    try:
-      mod = importlib.import_module('formula.' + formula)
-      path_to_module = join(FORMULA_DIR, formula + '.py')
-      print 'Starting {} (using {})'.format(formula, path_to_module)
-      mod.run()
-    except ImportError:
-      print_unknown_formula_contribution_hint(formula)
 
 
 def print_unknown_formula_contribution_hint(formula):
@@ -64,6 +53,28 @@ def list_available_formulas():
   print ':: Built-In Formulas'
   for formula in sorted(listdir(FORMULA_DIR)):
     print formula
+
+
+def ensure_docker_usage_is_possible():
+  returnCode = call(['docker', 'ps'], stdout=open(devnull, 'w'))
+  if (not returnCode == 0):
+    print 'It seems like there are issues with your'
+    print 'Docker setup. Please see the error above.'
+    sys.exit(1)
+
+
+def execute_formulas(formulas):
+  ensure_local_repo_exists()
+  ensure_docker_usage_is_possible()
+  for formula in formulas:
+    print ''
+    try:
+      mod = import_module('formula.' + formula)
+      path_to_module = join(FORMULA_DIR, formula + '.py')
+      print 'Starting {} (using {})'.format(formula, path_to_module)
+      mod.run()
+    except ImportError:
+      print_unknown_formula_contribution_hint(formula)
 
 
 if __name__ == '__main__':
