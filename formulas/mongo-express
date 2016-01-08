@@ -1,0 +1,17 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+# Configs
+container_name=dock-mongo-express
+container_port=8081
+
+# Stop Container
+force_stop $container_name
+
+# run Container
+run --detach \
+    --publish $container_port:$container_port \
+    --link dock-mongodb:mongo \
+    --name $container_name \
+    ineva/mongo-express:0.1
