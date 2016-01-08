@@ -3,20 +3,15 @@
 source "${BASH_SOURCE%/*}/../common"
 
 # Configs
-me_dock_name=dock-mongo-express
-me_dock_port=8081
+container_name=dock-mongo-express
+container_port=8081
 
 # Stop Container
-force_stop $me_dock_name
+force_stop $container_name
 
 # run Container
 run --detach \
-    --publish $me_dock_port:$me_dock_port \
+    --publish $container_port:$container_port \
     --link dock-mongodb:mongo \
-    --name $me_dock_name \
-    knickers/mongo-express
-
-# Open in browser (OS X)
-container_ip=$(get_ip)
-open http://$container_ip:$me_dock_port
-echo "Now, mongo-express is show in browser."
+    --name $container_name \
+    ineva/mongo-express:0.1
