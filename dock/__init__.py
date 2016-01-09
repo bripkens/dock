@@ -22,7 +22,7 @@ def print_version():
 def list_available_formulas():
   print ':: Built-In Formulas'
   for formula in sorted(os.listdir(FORMULA_DIR)):
-    if (formula.endswith('.py') and not formula == '__init__.py'):
+    if formula.endswith('.py') and not formula == '__init__.py':
       match = re.search('([^.]+)\\.', formula)
       print match.group(1)
 
@@ -40,7 +40,7 @@ def print_unknown_formula_contribution_hint(formula):
 
 def ensure_docker_usage_is_possible():
   returnCode = subprocess.call(['docker', 'ps'], stdout=open(os.devnull, 'w'))
-  if (not returnCode == 0):
+  if not returnCode == 0:
     print 'It seems like there are issues with your Docker setup.'
     sys.exit(1)
 
@@ -49,13 +49,16 @@ def execute_formulas(formulas):
   ensure_docker_usage_is_possible()
   for formula in formulas:
     print ''
+    module_name = 'formula.' + formula
     try:
-      mod = importlib.import_module('formula.' + formula)
+      mod = importlib.import_module(module_name)
       path_to_module = os.path.join(FORMULA_DIR, formula + '.py')
-      print 'Starting {} (using {})'.format(formula, path_to_module)
       mod.run()
-    except ImportError:
-      print_unknown_formula_contribution_hint(formula)
+    except ImportError as e:
+      if e.message.endswith(module_name):
+        print_unknown_formula_contribution_hint(formula)
+      else:
+        raise
 
 
 def main():
@@ -73,11 +76,11 @@ def main():
                       help='List available formulas')
   args = parser.parse_args()
 
-  if (args.version):
+  if args.version:
     print_version()
-  elif (args.list):
+  elif args.list:
     list_available_formulas()
-  elif (len(args.formulas)) == 0:
+  elif len(args.formulas) == 0:
     parser.print_help()
   else:
     execute_formulas(args.formulas)
