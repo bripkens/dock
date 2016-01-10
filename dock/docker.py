@@ -49,7 +49,9 @@ def run(image,
         detach=True,
         mount_docker_socket=False,
         silent=False,
-        link=[]):
+        interactive=False,
+        link=[],
+        command=None):
   name = add_name_prefix(name)
 
   args = ['docker', 'run', '--name', name]
@@ -60,6 +62,9 @@ def run(image,
   if auto_remove:
     args.append('--rm')
 
+  if interactive:
+    args.extend(['--interactive', '--tty'])
+
   if mount_docker_socket:
     args.extend(['--volume', '/var/run/docker.sock:/var/run/docker.sock'])
 
@@ -67,9 +72,15 @@ def run(image,
     args.extend(['--publish', '{}:{}'.format(publishedPort, publishedPort)])
 
   for each_link in link:
-    args.extend(['--link', '{}:{}'.format(each_link[0], each_link[1])])
+    args.extend(['--link', '{}:{}'.format(add_name_prefix(each_link[0]),
+                                          each_link[1])])
 
   args.append(image)
+
+  if not command == None:
+    args.extend(command)
+
+  print('Executing {}'.format(args))
 
   if not silent:
     print('Starting image {} as container {}'.format(image, name))

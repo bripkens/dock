@@ -7,5 +7,5 @@ def run(args):
   docker.requires(dependent='mongo-express', dependency='mongodb')
   docker.run(image='knickers/mongo-express:latest',
              name='mongo-express',
-             link=[['dock-mongodb', 'mongo']],
+             link=[['mongodb', 'mongo']],
              publish=[8081])
