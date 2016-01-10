@@ -30,7 +30,7 @@ def main():
 
   if args.version:
     print_version()
-  if args.cleanup:
+  elif args.cleanup:
     formula.execute_formula('docker-gc', [])
   elif args.list:
     formula.list_available_formulas()
