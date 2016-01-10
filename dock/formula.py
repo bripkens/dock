@@ -2,9 +2,12 @@ import importlib
 import os.path
 import re
 import subprocess
+import sys
+
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 FORMULA_DIR = os.path.join(HERE, 'formulas')
+
 
 def list_available_formulas():
   print(':: Built-In Formulas')

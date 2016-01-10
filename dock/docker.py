@@ -2,17 +2,15 @@ import json
 import os
 import re
 import subprocess
+import time
+
+import formula
 
 devnull = open(os.devnull, 'w')
 
 
 def add_name_prefix(container_name):
   return 'dock-' + container_name
-
-
-def generate_name_from_image(image):
-  # Docker container names cannot contain slashes
-  return image.replace('/', '_')
 
 
 def force_stop(name):
@@ -25,20 +23,33 @@ def force_stop(name):
                   stderr=devnull)
 
 
-def requires(name):
-  name = add_name_prefix(name)
-  
+def is_container_running(name):
+  try:
+    output = subprocess.check_output(['docker', 'inspect', name],
+                                     stderr=devnull)
+  except Error:
+    return False
+
+  return json.loads(output)[0]['State']['Running']
+
+
+def requires(dependent, dependency):
+  prefixed_dependency = add_name_prefix(dependency)
+  if not is_container_running(prefixed_dependency):
+    print('{} requires {} in order to run. Starting {}'.format(dependent,
+                                                               dependency,
+                                                               dependency))
+    formula.execute_formula(dependency, [])
+
 
 def run(image,
-        name=None,
+        name,
         publish=[],
         auto_remove=False,
         detach=True,
         mount_docker_socket=False,
-        silent=False):
-  if name == None:
-    name = generate_name_from_image(image)
-
+        silent=False,
+        link=[]):
   name = add_name_prefix(name)
 
   args = ['docker', 'run', '--name', name]
@@ -55,12 +66,24 @@ def run(image,
   for publishedPort in publish:
     args.extend(['--publish', '{}:{}'.format(publishedPort, publishedPort)])
 
+  for each_link in link:
+    args.extend(['--link', '{}:{}'.format(each_link[0], each_link[1])])
+
   args.append(image)
-  if not silent:
-    print('Starting image {} as container {}'.format(image, name))
-  subprocess.call(args)
 
   if not silent:
+    print('Starting image {} as container {}'.format(image, name))
+
+  result = subprocess.call(args)
+  if not result == 0:
+    print('Failed to start container.')
+    return
+
+  if not silent:
+    # Docker cli can return before the new container can be inspected. This
+    # is very unfortunate. The following is a fragile solution which needs
+    # to be revisited in time.
+    time.sleep(0.5)
     print_run_data(name)
 
 
