@@ -53,7 +53,7 @@ def run(image,
 
   args.append(image)
   if not silent:
-    print 'Starting image {} as container {}'.format(image, name)
+    print('Starting image {} as container {}'.format(image, name))
   subprocess.call(args)
 
   if not silent:
@@ -89,14 +89,14 @@ def print_run_data(name):
   ports = port_mappings.keys()
   ports.sort()
 
-  print 'Container Name:    {}'.format(name)
-  print 'IP:                {}'.format(get_ip())
+  print('Container Name:    {}'.format(name))
+  print('IP:                {}'.format(get_ip()))
 
   if len(ports) > 0:
-    print 'Ports:             Host  -> Container'
+    print('Ports:             Host  -> Container')
 
   for port in ports:
     stripped_port = strip_protocol_from_port(port)
     for host_port in port_mappings[port]:
-      print '                   {} -> {}'.format(host_port['HostPort'].ljust(5, ' '),
-                                                 stripped_port)
+      print('                   {} -> {}'.format(host_port['HostPort'].ljust(5, ' '),
+                                                 stripped_port))
