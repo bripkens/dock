@@ -2,6 +2,7 @@
 
 ## Releasing to PyPi
 Follow the guide on https://packaging.python.org/en/latest/distributing/
+release ideas: https://gist.github.com/audreyr/5990987
 
 ```bash
 # ensure twine is installed
