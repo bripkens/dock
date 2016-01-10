@@ -56,6 +56,7 @@ def run(image,
         interactive=False,
         link=[],
         command=None,
+        entrypoint=None,
         env={}):
   name = add_name_prefix(name)
 
@@ -69,6 +70,9 @@ def run(image,
 
   if interactive:
     args.extend(['--interactive', '--tty'])
+
+  if not entrypoint == None:
+    args.extend(['--entrypoint', entrypoint])
 
   if mount_docker_socket:
     args.extend(['--volume', '/var/run/docker.sock:/var/run/docker.sock'])
