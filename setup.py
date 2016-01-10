@@ -14,7 +14,7 @@ with open(path.join(HERE, 'dock', 'VERSION'), encoding='utf-8') as f:
 setup(
   name='dock-upload-test',
 
-  version='2.0.1',
+  version='2.0.2',
 
   description='Bootstrap databases, MOMs and other tools that you need for development purposes',
   long_description=LONG_DESCRIPTION,

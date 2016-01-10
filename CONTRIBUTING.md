@@ -8,6 +8,8 @@ Follow the guide on https://packaging.python.org/en/latest/distributing/
 $ pip install --upgrade twine bumpversion
 # remove previous build
 $ rm -rf build dist *.egg-info
+# increase the version number
+bumpversion --commit --tag (major|minor|patch)
 # generate package info used for the upload to the PyPi registry
 $ python setup.py egg_info
 # build the project
