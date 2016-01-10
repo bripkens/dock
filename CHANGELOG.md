@@ -1,5 +1,9 @@
 # dock changelog
 
+## 2.0.0 (unreleased)
+TODO Ben: extend release notes
+ - Rewriting dock to Python for easier development.
+
 ## 1.3.0
  - dock is now compatible with docker-machine thanks to [@codingfabian](https://github.com/CodingFabian).
 

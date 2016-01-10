@@ -10,12 +10,9 @@ import subprocess
 HERE = os.path.abspath(os.path.dirname(__file__))
 FORMULA_DIR = os.path.join(HERE, 'formula')
 
-with open(os.path.join(HERE, '..', 'VERSION')) as f:
-  VERSION = f.read().strip()
-
 
 def print_version():
-  print('dock {} by Ben Ripkens and contributors'.format(VERSION))
+  print('dock {} by Ben Ripkens and contributors'.format('2.0.1'))
   print('https://github.com/bripkens/dock')
 
 

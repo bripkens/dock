@@ -8,13 +8,13 @@ HERE = path.abspath(path.dirname(__file__))
 with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
   LONG_DESCRIPTION = f.read()
 
-with open(path.join(HERE, 'VERSION'), encoding='utf-8') as f:
+with open(path.join(HERE, 'dock', 'VERSION'), encoding='utf-8') as f:
   VERSION = f.read().strip()
 
 setup(
   name='dock-upload-test',
 
-  version=VERSION,
+  version='2.0.1',
 
   description='Bootstrap databases, MOMs and other tools that you need for development purposes',
   long_description=LONG_DESCRIPTION,
