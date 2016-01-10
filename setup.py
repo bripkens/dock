@@ -8,9 +8,6 @@ HERE = path.abspath(path.dirname(__file__))
 with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
   LONG_DESCRIPTION = f.read()
 
-with open(path.join(HERE, 'dock', 'VERSION'), encoding='utf-8') as f:
-  VERSION = f.read().strip()
-
 setup(
   name='dock-upload-test',
 
@@ -50,7 +47,7 @@ setup(
     'Programming Language :: Python :: 3.2',
     'Programming Language :: Python :: 3.3',
     'Programming Language :: Python :: 3.4',
-    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.5'
   ],
 
   keywords='development databases bootstrap setup messaging',
@@ -75,7 +72,7 @@ setup(
   # $ pip install -e .[dev,test]
   extras_require={
     'dev': ['check-manifest'],
-    'test': ['coverage'],
+    'test': ['coverage']
   },
 
   # If there are data files included in your packages that need to be
@@ -93,8 +90,8 @@ setup(
   # "scripts" keyword. Entry points provide cross-platform support and allow
   # pip to create the appropriate form of executable for the target platform.
   entry_points={
-      'console_scripts': [
-          'dock=dock:main',
-      ],
+    'console_scripts': [
+      'dock=dock:main'
+    ]
   },
 )

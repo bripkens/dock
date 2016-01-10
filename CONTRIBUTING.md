@@ -8,8 +8,11 @@ Follow the guide on https://packaging.python.org/en/latest/distributing/
 $ pip install --upgrade twine bumpversion
 # remove previous build
 $ rm -rf build dist *.egg-info
+# Update changelog
+$ git add CHANGELOG.md
+$ git commit -m "docs(changelog): Prepare changelog for upcoming release"
 # increase the version number
-bumpversion --commit --tag (major|minor|patch)
+$ bumpversion --commit --tag (major|minor|patch)
 # generate package info used for the upload to the PyPi registry
 $ python setup.py egg_info
 # build the project
@@ -22,3 +25,7 @@ $ twine upload dist/*
 
 ## Symlinking cloned repository
 pip install -e .
+
+
+## TODOs
+ - [ ] Handle Docker run errors (see screenshot from 2016-01-10 8:22)
