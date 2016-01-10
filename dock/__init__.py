@@ -55,7 +55,7 @@ def execute_formulas(formulas):
       path_to_module = os.path.join(FORMULA_DIR, formula + '.py')
       mod.run()
     except ImportError as e:
-      if e.message.endswith(module_name):
+      if e.message.endswith(formula):
         print_unknown_formula_contribution_hint(formula)
       else:
         raise
@@ -74,10 +74,15 @@ def main():
   parser.add_argument('-l', '--list',
                       action='store_true',
                       help='List available formulas')
+  parser.add_argument('--cleanup',
+                      action='store_true',
+                      help='Remove unused containers and images via docker-gc')
   args = parser.parse_args()
 
   if args.version:
     print_version()
+  if args.cleanup:
+    execute_formulas(['docker-gc'])
   elif args.list:
     list_available_formulas()
   elif len(args.formulas) == 0:
