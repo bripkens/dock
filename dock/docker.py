@@ -8,6 +8,10 @@ import formula
 
 devnull = open(os.devnull, 'w')
 
+def msg(k, v):
+  label = k + ':' if len(k) > 0 else ''
+  print(label.ljust(20, ' ') + v)
+
 
 def add_name_prefix(container_name):
   return 'dock-' + container_name
@@ -51,7 +55,8 @@ def run(image,
         silent=False,
         interactive=False,
         link=[],
-        command=None):
+        command=None,
+        env={}):
   name = add_name_prefix(name)
 
   args = ['docker', 'run', '--name', name]
@@ -75,12 +80,13 @@ def run(image,
     args.extend(['--link', '{}:{}'.format(add_name_prefix(each_link[0]),
                                           each_link[1])])
 
+  for key in env:
+    args.extend(['--env', '{}={}'.format(key, env[key])])
+
   args.append(image)
 
   if not command == None:
     args.extend(command)
-
-  print('Executing {}'.format(args))
 
   if not silent:
     print('Starting image {} as container {}'.format(image, name))
@@ -127,14 +133,20 @@ def print_run_data(name):
   ports = port_mappings.keys()
   ports.sort()
 
-  print('Container Name:    {}'.format(name))
-  print('IP:                {}'.format(get_ip()))
+  msg('Container Name', name)
+  msg('IP', get_ip())
 
   if len(ports) > 0:
-    print('Ports:             Host  -> Container')
+    msg('Ports', 'Host  -> Container')
 
   for port in ports:
     stripped_port = strip_protocol_from_port(port)
-    for host_port in port_mappings[port]:
-      print('                   {} -> {}'.format(host_port['HostPort'].ljust(5, ' '),
-                                                 stripped_port))
+
+    host_ports = port_mappings[port]
+    # host ports may be None when the ports are not published
+    if host_ports == None:
+      continue
+
+    for host_port in host_ports:
+      msg('', '{} -> {}'.format(host_port['HostPort'].ljust(5, ' '),
+                                stripped_port))
