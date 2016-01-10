@@ -25,6 +25,10 @@ def force_stop(name):
                   stderr=devnull)
 
 
+def requires(name):
+  name = add_name_prefix(name)
+  
+
 def run(image,
         name=None,
         publish=[],

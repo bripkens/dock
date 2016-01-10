@@ -1,6 +1,6 @@
 import docker
 
-def run():
+def run(args):
   print('Starting cleanup process via docker-gc...')
   docker.run(image='spotify/docker-gc',
              auto_remove=True,
