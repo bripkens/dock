@@ -57,7 +57,8 @@ def run(image,
         link=[],
         command=None,
         entrypoint=None,
-        env={}):
+        env={},
+        volume={}):
   name = add_name_prefix(name)
 
   args = ['docker', 'run', '--name', name]
@@ -76,6 +77,9 @@ def run(image,
 
   if mount_docker_socket:
     args.extend(['--volume', '/var/run/docker.sock:/var/run/docker.sock'])
+
+  for key in volume:
+    args.extend(['--volume', '{}:{}'.format(key, volume[key])])
 
   for publishedPort in publish:
     args.extend(['--publish', '{}:{}'.format(publishedPort, publishedPort)])
