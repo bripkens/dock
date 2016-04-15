@@ -99,7 +99,7 @@ process of adding a new formula.
  - `git clone <your fork>`
  - Add a new file to the `formulas/` directory
  - Check out existing formulas for the basic formula structure
- - Try the new formula locally `bash forumlas/<my new formula>`
+ - Try the new formula locally `bash formulas/<my new formula>`
  - Commit, push and open a pull request
 
 ## Credits
