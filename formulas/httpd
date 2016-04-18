@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+HTDOCS=/usr/local/apache2/htdocs
+
+force_stop dock-httpd
+
+run --detach \
+    --publish 80:80 \
+    --name dock-httpd \
+    --volume "$PWD":"$HTDOCS" \
+    httpd
+
+echo "Mounted $PWD into $HTDOCS"
