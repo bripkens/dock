@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+SHARE=/usr/share/nginx/html
+
+force_stop dock-nginx
+
+run --detach \
+    --publish 80:80 \
+    --name dock-nginx \
+    --volume "$PWD":"$SHARE" \
+    nginx
+
+echo "Mounted $PWD into $SHARE"
