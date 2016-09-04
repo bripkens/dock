@@ -79,6 +79,10 @@ curl https://raw.githubusercontent.com/bripkens/dock/master/dock -so ~/bin/dock 
      echo "dock installation successful. Try running 'dock'"
 ```
 
+## Command completion
+
+To add command completion to [fish](https://fishshell.com) copy the `dock.fish` file to `~/.config/fish/completions`.
+
 ## Supported programs
 For a list of supported programs run `dock -l` or check out this repository's
 [formulas/](https://github.com/bripkens/dock/tree/master/formulas) directory.
