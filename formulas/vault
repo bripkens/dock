@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source "${BASH_SOURCE%/*}/../common"
+
+force_stop dock-vault
+
+token="00f0c15f-cb5d-ef15-a813-58e32927054c"
+
+docker run -d \
+      -p 8200:8200 \
+      --name dock-vault sjourdan/vault \
+      server -dev-listen-address=0.0.0.0:8200 -dev-root-token-id=$token -dev
+
+echo "Root token of vault = $token"
